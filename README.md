@@ -1,41 +1,39 @@
-# Mediroza General Hospital — Security Assessment & SOC Lab Portfolio
+# Mediroza General Hospital — Week 4 Penetration Testing Report & Documentation
 
-> **Educational & Authorized Lab Documentation Only.** All activities documented in this repository were performed strictly within an authorized training/lab context (`medirozahospital.com` / Networkwalks lab exercises and SOC/SIEM defense workflows) for educational and portfolio purposes. No unauthorized testing, data exfiltration, or production disruption is included.
+> **Educational & Authorized Lab Documentation Only.** All activities documented in this repository were performed strictly within an authorized penetration testing lab (`medirozahospital.com` — Networkwalks Batch B083, Week 4) for educational and portfolio purposes. Written authorization was granted within defined scope rules.
 
 ---
 
 ## Overview
 
-This repository provides a clean, structured **GitHub repository README (`README.md`)** and folder layout for documenting a **Security Operations Center (SOC) & Penetration Testing / Vulnerability Assessment Lab** centered on the authorized target `medirozahospital.com` across Milestones **M1–M4** (reconnaissance & web exposure review, encrypted document handling & password recovery concepts, data exposure analysis & metadata hygiene, and structured reporting/remediation).
+This repository documents the **Week 4 Black-Box Penetration Testing Project** targeting **Mediroza General Hospital** (`https://medirozahospital.com`) across Milestones **M1–M4**—covering reconnaissance and initial access, encrypted file recovery, server-side data exposure analysis, and professional security reporting.
 
 ---
 
-## Tools & Technologies Used
+## Tools & Utilities Used
 
-| Category | Tools & Platforms | Role in Lab & Documentation |
+| Category | Tools & Utilities | Role in Project |
 | :--- | :--- | :--- |
-| **Reconnaissance & Web Profiling** | `whois`, `whatweb`, `nslookup`, `dig`, `curl`, `wafw00f`, `dnsrecon`, `theHarvester` | Domain registration lookup, DNS record enumeration, web/WAF fingerprinting, and OSINT gathering |
-| **Network & Vulnerability Analysis** | Zenmap / Nmap, Wireshark, Nessus Essentials, Burp Suite | Host/port discovery, packet capture inspection, vulnerability scanning, and HTTP/web traffic review |
-| **File & Password Assessment** | John the Ripper, Johnny GUI, file metadata inspection utilities | Authorized password/encryption assessment and file property/metadata verification |
-| **SIEM & Threat Intelligence** | Wazuh (Manager, Indexer, Dashboard, Filebeat, Windows Agent), AbuseIPDB, VirusTotal | Centralized log collection, authentication/event analysis, and IOC reputation triage |
-| **Lab Environment & Reporting** | Oracle VirtualBox (Windows 10 host; Kali Linux, Ubuntu, Windows 10 VMs), Git & GitHub, Markdown | Isolated virtualized lab networking, version-controlled documentation, and structured reporting |
+| **Reconnaissance & Web Profiling** | `nslookup`, `dig`, `whois`, `curl`, `whatweb` | DNS resolution, domain registration lookup, HTTP header inspection, and web-stack fingerprinting |
+| **Web Application & Proxy Testing** | Burp Suite (Intruder, Repeater), FoxyProxy, Web Browser / Developer Tools | Routing browser traffic, intercepting/inspecting requests, testing SQL injection/authentication entry points, and reviewing exposed paths |
+| **Cryptographic & File Analysis** | Networkwalks Hash Calculator, Networkwalks Password Cracker, PDF property/metadata inspection | Extracting hashes, performing offline password recovery on encrypted patient lab PDFs, and inspecting document metadata |
+| **Environment & Documentation** | Kali Linux (Oracle VirtualBox), Git & GitHub, Markdown | Command-line execution, evidence capture, and structured reporting |
 
 ---
 
-## Suggested Repository Structure
+## Repository Structure
 
 ```text
-medirozahospital-security-lab/
+medirozahospital-pentest-wk4/
 ├── README.md
-├── 01-reconnaissance-and-access/
+├── 01-reconnaissance-and-initial-access/
 │   ├── recon-notes.md
 │   └── findings-summary.md
-├── 02-cryptography-and-file-analysis/
+├── 02-encryption-and-file-analysis/
 │   ├── encryption-assessment.md
 │   └── metadata-review.md
-├── 03-data-exposure-and-siem/
-│   ├── exposure-analysis.md
-│   └── wazuh-detection-notes.md
+├── 03-data-exposure-analysis/
+│   └── exposure-analysis.md
 ├── 04-final-report-and-remediation/
 │   ├── executive-summary.md
 │   ├── risk-matrix.md
@@ -48,33 +46,33 @@ medirozahospital-security-lab/
 
 ## Milestone Workflow Summary
 
-| Milestone | Focus Area | Key Artifacts & Documentation |
+| Milestone | Focus Area | Summary of Work |
 | :--- | :--- | :--- |
-| **M1 — Reconnaissance & Entry Points** | Passive/active recon, DNS/web stack profiling, exposed endpoints, auth & input review | Reconnaissance logs, service/stack notes, access control observations |
-| **M2 — File & Encryption Analysis** | File properties, encryption/password policy assessment, recovery methodology notes | Cipher/protection findings, metadata review, defensive hardening notes |
-| **M3 — Data Exposure & Monitoring** | Sensitive data exposure review, internal file clues, log monitoring & alerting | Data classification notes, exposure impact summary, SIEM monitoring notes |
-| **M4 — Reporting & Remediation** | Executive summary, methodology, severity ratings, prioritized remediation steps | Final assessment report, risk ratings (Critical–Low), fix verification checklist |
+| **M1 — Initial Access** | Target reconnaissance, exposed entry points, authentication/input review | Profiled `medirozahospital.com` and identified unauthorized access paths to restricted patient PDF lab reports |
+| **M2 — Data Extraction** | File encryption analysis and password recovery | Evaluated PDF protection mechanisms using Networkwalks Hash Calculator and Networkwalks Password Cracker |
+| **M3 — Critical Data Exposure** | Deep file property inspection and server directory exposure | Analyzed file metadata and uncovered exposed employee salary and shareholder records on the server |
+| **M4 — Pentest Report** | Executive summary, methodology, findings, risk ratings, remediation | Compiled a structured penetration testing report with Critical–Low ratings and actionable fixes |
 
 ---
 
 ## Risk Rating Scale
 
-* **Critical:** Direct, high-impact exposure of sensitive records or administrative controls with low barrier to exploitation; requires immediate remediation.
-* **High:** Significant security weakness or unauthorized access path affecting core application or data confidentiality; prioritize urgently.
+* **Critical:** Direct, high-impact exposure of sensitive patient, employee, or shareholder records with low barrier to exploitation; requires immediate remediation.
+* **High:** Significant security weakness or unauthorized access path affecting application or data confidentiality; prioritize urgently.
 * **Medium:** Security misconfiguration or defense-in-depth gap requiring coordinated remediation in the near term.
 * **Low:** Minor informational finding or hardening improvement with limited standalone impact.
 
 ---
 
-## Defensive & Remediation Priorities
+## Key Remediation Recommendations
 
-1. **Access Control & Authentication Hardening:** Enforce strong authentication, authorization checks on restricted routes, and principle of least privilege.
-2. **Encryption & Key/Secret Hygiene:** Apply modern encryption standards, avoid weak or predictable credentials/passphrases, and audit document metadata before publishing or sharing files.
-3. **Data Minimization & Exposure Prevention:** Remove sensitive files, internal reference material, and PII/financial records from web-accessible paths; restrict directory listings and internal shares.
-4. **Logging, Monitoring & Incident Response:** Forward relevant authentication, web, and endpoint logs to centralized monitoring (such as Wazuh) and tune alerts for anomalous access patterns.
+1. **Enforce Authentication & Access Controls:** Restrict unauthorized access to patient portals, lab reports, and administrative routes.
+2. **Disable Directory Listing & Remove Sensitive Files from Web Roots:** Remove exposed database backups, employee salary sheets, and shareholder documents from publicly accessible directories.
+3. **Strengthen Document Encryption & Metadata Hygiene:** Use strong, unique encryption passphrases and strip sensitive internal paths or properties from PDFs before storage or distribution.
+4. **Minimize Server & HTTP Banner Exposure:** Harden web server headers and restrict unnecessary information disclosure during reconnaissance.
 
 ---
 
 ## Disclaimer
 
-This repository template and documentation framework are intended strictly for authorized security assessments, SOC training, and defensive engineering portfolios. Always obtain explicit written authorization before testing any target system or network.
+This repository is strictly for educational and authorized security assessment documentation. Never test or access systems without explicit written permission from the system owner.
